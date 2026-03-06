@@ -2555,8 +2555,6 @@
     function checkLockAndHide() {
       try { localStorage.setItem(LOCK_PASSED_KEY, "1"); } catch (_) {}
       if (lockOverlay) lockOverlay.classList.add("is-hidden");
-      const welcomeEl = document.getElementById("welcomeOverlay");
-      if (welcomeEl && !localStorage.getItem("treemWelcomeSeen_v2")) welcomeEl.classList.remove("is-hidden");
     }
     function showLockError() {
       if (!lockOverlayInput) return;
@@ -2591,7 +2589,7 @@
 
     const welcomeOverlay = document.getElementById("welcomeOverlay");
     const WELCOME_SEEN_KEY = "treemWelcomeSeen_v2";
-    if ((!localStorage.getItem(LOCK_PASSED_KEY) || localStorage.getItem(WELCOME_SEEN_KEY)) && welcomeOverlay) {
+    if (localStorage.getItem(WELCOME_SEEN_KEY) && welcomeOverlay) {
       welcomeOverlay.classList.add("is-hidden");
     }
     document.getElementById("welcomeBtn").addEventListener("click", () => {
